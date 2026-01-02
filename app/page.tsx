@@ -2,23 +2,27 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence, Variants } from "framer-motion"
-import { ArrowLeft, ArrowRight, Github, Linkedin } from "lucide-react"
+import Link from "next/link"
+import { ArrowLeft, ArrowRight, Github, Linkedin, FileText } from "lucide-react"
 import { WebGLShader } from "@/components/ui/web-gl-shader"
 import { LiquidButton } from "@/components/ui/liquid-glass-button"
 import { TechStack } from "@/components/sections/TechStack"
+import { PaperAirplaneModal } from "@/components/sections/PaperAirplaneModal"
 import { Experience } from "@/components/sections/Experience"
 import { Projects } from "@/components/sections/Projects"
+import { Certificates } from "@/components/sections/Certificates"
 import { Contact } from "@/components/sections/Contact"
 import { Typewriter } from "@/components/ui/typewriter"
 
-type ViewState = "intro" | "about" | "projects" | "contact"
+type ViewState = "intro" | "about" | "projects" | "certificates" | "contact"
 
 export default function Home() {
   const [view, setView] = useState<ViewState>("intro")
   const [direction, setDirection] = useState(0)
+  const [showResume, setShowResume] = useState(false)
 
   // Determine direction for animation based on view order
-  const viewOrder: ViewState[] = ["intro", "about", "projects", "contact"]
+  const viewOrder: ViewState[] = ["intro", "about", "projects", "certificates", "contact"]
 
   const navigateTo = (newView: ViewState) => {
     const currentIndex = viewOrder.indexOf(view)
@@ -89,6 +93,9 @@ export default function Home() {
       {/* Persistent Background */}
       <WebGLShader />
 
+      {/* Paper Airplane Resume Modal */}
+      <PaperAirplaneModal isOpen={showResume} onClose={() => setShowResume(false)} />
+
       {/* Background Ambience */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[128px]" />
@@ -119,11 +126,20 @@ export default function Home() {
               exit="exit"
               className="flex flex-col items-center justify-center h-full w-full"
             >
-              <div className="bg-black/50 backdrop-blur-sm p-10 border border-[#27272a] rounded-lg">
+              <div className="p-10 border border-transparent rounded-lg relative">
                 <motion.h1
-                  initial={{ scale: 3, opacity: 0, filter: "blur(20px)" }}
-                  animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 3.5, ease: [0.2, 0.65, 0.3, 0.9] }}
+                  initial={{ scale: 3, opacity: 0, filter: "blur(20px)", textShadow: "0 0 0px rgba(255,255,255,0)" }}
+                  animate={{
+                    scale: 1,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    textShadow: ["0 0 0px rgba(255,255,255,0)", "0 0 60px rgba(255,255,255,0.7)", "0 0 0px rgba(255,255,255,0)"]
+                  }}
+                  transition={{
+                    duration: 3.5,
+                    ease: [0.2, 0.65, 0.3, 0.9],
+                    textShadow: { delay: 3.4, duration: 1.2, ease: "easeInOut" }
+                  }}
                   className="mb-6 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent text-center text-7xl font-extrabold tracking-[-0.05em] uppercase md:text-[clamp(3rem,12vw,9rem)] leading-[0.9]"
                 >
                   PORTFOLIO
@@ -196,6 +212,9 @@ export default function Home() {
                       <a href="https://github.com/Daksh-create349" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
                         <Github className="h-6 w-6" />
                       </a>
+                      <button onClick={() => setShowResume(true)} className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
+                        <FileText className="h-6 w-6" />
+                      </button>
                     </motion.div>
                   </div>
 
@@ -225,11 +244,35 @@ export default function Home() {
                 <button onClick={() => navigateTo("about")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
                   <ArrowLeft className="w-4 h-4" /> About
                 </button>
-                <button onClick={() => navigateTo("contact")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
-                  Contact <ArrowRight className="w-4 h-4" />
+                <button onClick={() => navigateTo("certificates")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                  Credentials <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
               <Projects />
+            </motion.div>
+          )}
+
+          {view === "certificates" && (
+            <motion.div
+              key="certificates"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="w-full h-full overflow-y-auto no-scrollbar"
+            >
+              <div className="w-full h-full flex flex-col justify-start pt-20 pb-20 px-4 md:px-20">
+                <div className="flex justify-between mb-8">
+                  <button onClick={() => navigateTo("projects")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                    <ArrowLeft className="w-4 h-4" /> Projects
+                  </button>
+                  <button onClick={() => navigateTo("contact")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                    Contact <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+                <Certificates />
+              </div>
             </motion.div>
           )}
 
@@ -244,8 +287,8 @@ export default function Home() {
               className="w-full h-full flex flex-col justify-center"
             >
               <div className="absolute top-0 left-0 w-full p-4 flex justify-start z-20">
-                <button onClick={() => navigateTo("projects")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
-                  <ArrowLeft className="w-4 h-4" /> Projects
+                <button onClick={() => navigateTo("certificates")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4" /> Credentials
                 </button>
               </div>
               <Contact />
@@ -264,6 +307,6 @@ export default function Home() {
           scrollbar-width: none;
         }
       `}</style>
-    </div>
+    </div >
   )
 }

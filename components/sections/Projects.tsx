@@ -1,7 +1,8 @@
 "use client"
 
 import { motion, useTransform, useScroll, AnimatePresence } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
+import { createPortal } from "react-dom"
 import { ArrowUpRight } from "lucide-react"
 import { Typewriter } from "../ui/typewriter"
 
@@ -48,52 +49,60 @@ const projects: Project[] = [
 export function Projects() {
     const containerRef = useRef<HTMLDivElement>(null)
     const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     return (
         <div className="flex h-full w-full flex-col justify-center px-4 md:px-10">
             {/* Modal Overlay */}
-            <AnimatePresence>
-                {selectedProject && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
-                        onClick={() => setSelectedProject(null)} // Close on background click
-                    >
+            {mounted && createPortal(
+                <AnimatePresence>
+                    {selectedProject && (
                         <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            onClick={(e) => e.stopPropagation()} // Prevent close on modal click
-                            className="relative w-full max-w-3xl overflow-hidden rounded-lg border border-zinc-700 bg-black shadow-2xl"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+                            onClick={() => setSelectedProject(null)} // Close on background click
                         >
-                            {/* Terminal Header */}
-                            <div className="flex items-center justify-between bg-zinc-900 px-4 py-2 border-b border-zinc-800">
-                                <div className="flex items-center gap-2">
-                                    <div className="h-3 w-3 rounded-full bg-red-500 hover:bg-red-400 cursor-pointer" onClick={() => setSelectedProject(null)} />
-                                    <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                                    <div className="h-3 w-3 rounded-full bg-green-500" />
+                            <motion.div
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.8, opacity: 0 }}
+                                onClick={(e) => e.stopPropagation()} // Prevent close on modal click
+                                className="relative w-full max-w-3xl overflow-hidden rounded-lg border border-zinc-700 bg-black shadow-2xl"
+                            >
+                                {/* Terminal Header */}
+                                <div className="flex items-center justify-between bg-zinc-900 px-4 py-2 border-b border-zinc-800">
+                                    <div className="flex items-center gap-2">
+                                        <div className="h-3 w-3 rounded-full bg-red-500 hover:bg-red-400 cursor-pointer" onClick={() => setSelectedProject(null)} />
+                                        <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                                        <div className="h-3 w-3 rounded-full bg-green-500" />
+                                    </div>
+                                    <div className="text-xs font-mono text-zinc-400">{selectedProject.exeName || 'project.exe'}</div>
+                                    <div className="w-10" />
                                 </div>
-                                <div className="text-xs font-mono text-zinc-400">{selectedProject.exeName || 'project.exe'}</div>
-                                <div className="w-10" />
-                            </div>
 
-                            {/* Terminal Content */}
-                            <div className="p-6 md:p-8 font-mono text-sm md:text-base text-green-400 overflow-y-auto max-h-[70vh]">
-                                <div className="mb-4">
-                                    <span className="text-blue-400">root@portfolio</span>:<span className="text-blue-200">~</span>$ ./describe_{selectedProject.title.toLowerCase().replace(" ", "_")}.sh
+                                {/* Terminal Content */}
+                                <div className="p-6 md:p-8 font-mono text-sm md:text-base text-green-400 overflow-y-auto max-h-[70vh]">
+                                    <div className="mb-4">
+                                        <span className="text-blue-400">root@portfolio</span>:<span className="text-blue-200">~</span>$ ./describe_{selectedProject.title.toLowerCase().replace(" ", "_")}.sh
+                                    </div>
+                                    <Typewriter
+                                        text={selectedProject.description || "No description available."}
+                                        speed={15}
+                                        className="leading-relaxed whitespace-pre-wrap"
+                                    />
                                 </div>
-                                <Typewriter
-                                    text={selectedProject.description || "No description available."}
-                                    speed={15}
-                                    className="leading-relaxed whitespace-pre-wrap"
-                                />
-                            </div>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
