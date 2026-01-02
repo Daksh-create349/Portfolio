@@ -1,65 +1,269 @@
-import Image from "next/image";
+"use client"
+
+import { useState } from "react"
+import { motion, AnimatePresence, Variants } from "framer-motion"
+import { ArrowLeft, ArrowRight, Github, Linkedin } from "lucide-react"
+import { WebGLShader } from "@/components/ui/web-gl-shader"
+import { LiquidButton } from "@/components/ui/liquid-glass-button"
+import { TechStack } from "@/components/sections/TechStack"
+import { Experience } from "@/components/sections/Experience"
+import { Projects } from "@/components/sections/Projects"
+import { Contact } from "@/components/sections/Contact"
+import { Typewriter } from "@/components/ui/typewriter"
+
+type ViewState = "intro" | "about" | "projects" | "contact"
 
 export default function Home() {
+  const [view, setView] = useState<ViewState>("intro")
+  const [direction, setDirection] = useState(0)
+
+  // Determine direction for animation based on view order
+  const viewOrder: ViewState[] = ["intro", "about", "projects", "contact"]
+
+  const navigateTo = (newView: ViewState) => {
+    const currentIndex = viewOrder.indexOf(view)
+    const newIndex = viewOrder.indexOf(newView)
+    setDirection(newIndex > currentIndex ? 1 : -1)
+    setView(newView)
+  }
+
+  const slideVariants: Variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+      filter: "blur(10px)",
+      position: "absolute",
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      zIndex: 1,
+      position: "relative",
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.5 },
+        filter: { duration: 0.5 },
+      },
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 0,
+      filter: "blur(10px)",
+      zIndex: 0,
+      position: "absolute",
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.5 },
+        filter: { duration: 0.5 },
+      },
+    }),
+  }
+
+  const container: Variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.8,
+        ease: [0.2, 0.65, 0.3, 0.9] as any,
+      },
+    },
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black text-white selection:bg-white/20">
+      {/* Persistent Background */}
+      <WebGLShader />
+
+      {/* Background Ambience */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[128px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 rounded-full blur-[128px]" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-6xl px-6 h-screen flex flex-col pt-20 pb-10">
+
+        {/* Navigation Dots */}
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 flex gap-4 z-50">
+          {viewOrder.map((v) => (
+            <button
+              key={v}
+              onClick={() => navigateTo(v)}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${view === v ? "bg-white w-8" : "bg-white/20 hover:bg-white/50"}`}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
+
+        <AnimatePresence mode="popLayout" custom={direction}>
+          {view === "intro" && (
+            <motion.main
+              key="intro"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="flex flex-col items-center justify-center h-full w-full"
+            >
+              <div className="bg-black/50 backdrop-blur-sm p-10 border border-[#27272a] rounded-lg">
+                <motion.h1
+                  initial={{ scale: 3, opacity: 0, filter: "blur(20px)" }}
+                  animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 3.5, ease: [0.2, 0.65, 0.3, 0.9] }}
+                  className="mb-6 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent text-center text-7xl font-extrabold tracking-[-0.05em] uppercase md:text-[clamp(3rem,12vw,9rem)] leading-[0.9]"
+                >
+                  PORTFOLIO
+                </motion.h1>
+                <p className="text-zinc-400 px-6 text-center text-sm md:text-lg font-light tracking-wide max-w-xl mx-auto">
+                  Unleashing creativity through bold visuals, seamless interfaces, and limitless possibilities.
+                </p>
+                <div className="my-8 flex items-center justify-center gap-2">
+                  <span className="relative flex h-2 w-2 items-center justify-center">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                  </span>
+                  <p className="text-xs font-medium tracking-wide text-emerald-500 uppercase">
+                    Available for New Projects
+                  </p>
+                </div>
+
+                <div className="flex justify-center pt-4">
+                  <div onClick={() => navigateTo("about")}>
+                    <LiquidButton
+                      className="text-white border-white/20 hover:border-white/40 rounded-full"
+                      size={"xl"}
+                    >
+                      Let&#39;s Go
+                    </LiquidButton>
+                  </div>
+                </div>
+              </div>
+            </motion.main>
+          )}
+
+          {view === "about" && (
+            <motion.div
+              key="about"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="w-full h-full overflow-y-auto no-scrollbar"
+            >
+              <div className="max-w-4xl mx-auto pb-20">
+                <div className="mb-12 flex items-center justify-between">
+                  <button onClick={() => navigateTo("intro")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                    <ArrowLeft className="w-4 h-4" /> Back
+                  </button>
+                  <button onClick={() => navigateTo("projects")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                    Projects <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <motion.div variants={container} initial="hidden" animate="show" className="space-y-16">
+                  <div>
+                    <motion.h1 variants={item} className="mb-8 text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">About Me</motion.h1>
+                    <motion.div variants={item} className="h-48 md:h-64 mb-12">
+                      <div className="font-mono text-xl md:text-3xl lg:text-4xl text-emerald-500 leading-relaxed">
+                        <span className="text-zinc-500 mr-4">C:\Users\Daksh&gt;</span>
+                        <Typewriter
+                          text="I'm Daksh Srivastava, a Full Stack Developer and B.Tech CSE student at ITM Skills University (Batch 2025-2029). I build scalable web apps & premium user experiences."
+                          speed={50}
+                        />
+                      </div>
+                    </motion.div>
+
+
+                    <motion.div variants={item} className="flex gap-4 pt-8">
+                      <a href="https://www.linkedin.com/in/daksh-srivastava-2ba851344/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
+                        <Linkedin className="h-6 w-6" />
+                      </a>
+                      <a href="https://github.com/Daksh-create349" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
+                        <Github className="h-6 w-6" />
+                      </a>
+                    </motion.div>
+                  </div>
+
+                  <motion.div variants={item}>
+                    <TechStack />
+                  </motion.div>
+
+                  <motion.div variants={item}>
+                    <Experience />
+                  </motion.div>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+
+          {view === "projects" && (
+            <motion.div
+              key="projects"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="w-full h-full flex flex-col justify-center"
+            >
+              <div className="absolute top-0 left-0 w-full p-4 flex justify-between z-20">
+                <button onClick={() => navigateTo("about")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4" /> About
+                </button>
+                <button onClick={() => navigateTo("contact")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                  Contact <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+              <Projects />
+            </motion.div>
+          )}
+
+          {view === "contact" && (
+            <motion.div
+              key="contact"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="w-full h-full flex flex-col justify-center"
+            >
+              <div className="absolute top-0 left-0 w-full p-4 flex justify-start z-20">
+                <button onClick={() => navigateTo("projects")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4" /> Projects
+                </button>
+              </div>
+              <Contact />
+            </motion.div>
+          )}
+
+        </AnimatePresence>
+      </div>
+
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
-  );
+  )
 }
