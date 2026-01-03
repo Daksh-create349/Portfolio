@@ -14,7 +14,7 @@ import {
     SiNextdotjs,
     SiTypescript,
     SiNodedotjs,
-    SiThreedotjs
+    SiFirebase
 } from "react-icons/si"
 
 const technologies = [
@@ -29,7 +29,7 @@ const technologies = [
     { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" }, // Next.js White
     { name: "TypeScript", icon: SiTypescript, color: "#3178C6" }, // TS Blue
     { name: "Node.js", icon: SiNodedotjs, color: "#339933" }, // Node Green
-    { name: "Three.js", icon: SiThreedotjs, color: "#ffffff" } // Three.js White
+    { name: "Firebase", icon: SiFirebase, color: "#FFCA28" } // Firebase Yellow
 ]
 
 export function TechStack() {
