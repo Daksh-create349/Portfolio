@@ -1,14 +1,40 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
+import {
+    SiPostgresql,
+    SiMongodb,
+    SiTailwindcss,
+    SiPython,
+    SiJavascript,
+    SiHtml5,
+    SiCplusplus,
+    SiReact,
+    SiNextdotjs,
+    SiTypescript,
+    SiNodedotjs,
+    SiThreedotjs
+} from "react-icons/si"
 
 const technologies = [
-    "PostgreSQL", "MongoDB", "Tailwind CSS", "Python",
-    "JavaScript", "HTML", "C++", "React", "Next.js",
-    "TypeScript", "Node.js", "Three.js"
+    { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" }, // Royal Blue
+    { name: "MongoDB", icon: SiMongodb, color: "#47A248" }, // Mongo Green
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38B2AC" }, // Tailwind Teal
+    { name: "Python", icon: SiPython, color: "#3776AB" }, // Python Blue
+    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" }, // JS Yellow
+    { name: "HTML", icon: SiHtml5, color: "#E34F26" }, // HTML Orange
+    { name: "C++", icon: SiCplusplus, color: "#00599C" }, // C++ Blue
+    { name: "React", icon: SiReact, color: "#61DAFB" }, // React Blue
+    { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" }, // Next.js White
+    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" }, // TS Blue
+    { name: "Node.js", icon: SiNodedotjs, color: "#339933" }, // Node Green
+    { name: "Three.js", icon: SiThreedotjs, color: "#ffffff" } // Three.js White
 ]
 
 export function TechStack() {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
     return (
         <div className="w-full overflow-hidden py-10">
             <h3 className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
@@ -27,12 +53,25 @@ export function TechStack() {
                 >
                     {/* Render the list twice to enable seamless 0 -> -50% loop */}
                     {[...technologies, ...technologies].map((tech, i) => (
-                        <span
+                        <div
                             key={i}
-                            className="whitespace-nowrap text-3xl font-light text-zinc-400/80 transition-colors hover:text-white"
+                            className="flex items-center gap-2 cursor-pointer transition-colors duration-300"
+                            onMouseEnter={() => setHoveredIndex(i)}
+                            onMouseLeave={() => setHoveredIndex(null)}
                         >
-                            {tech}
-                        </span>
+                            <div
+                                className="transition-colors duration-300"
+                                style={{ color: hoveredIndex === i ? tech.color : "rgb(113 113 122)" }} // zinc-500
+                            >
+                                <tech.icon className="h-6 w-6" />
+                            </div>
+                            <span
+                                className="whitespace-nowrap text-3xl font-light transition-colors duration-300"
+                                style={{ color: hoveredIndex === i ? tech.color : "rgba(161, 161, 170, 0.8)" }} // zinc-400/80
+                            >
+                                {tech.name}
+                            </span>
+                        </div>
                     ))}
                 </motion.div>
             </div>

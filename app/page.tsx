@@ -13,6 +13,7 @@ import { Projects } from "@/components/sections/Projects"
 import { Certificates } from "@/components/sections/Certificates"
 import { Contact } from "@/components/sections/Contact"
 import { Typewriter } from "@/components/ui/typewriter"
+import { GitHubCalendar } from "react-github-calendar"
 
 type ViewState = "intro" | "about" | "projects" | "certificates" | "contact"
 
@@ -20,6 +21,7 @@ export default function Home() {
   const [view, setView] = useState<ViewState>("intro")
   const [direction, setDirection] = useState(0)
   const [showResume, setShowResume] = useState(false)
+  const [calendarYear, setCalendarYear] = useState<number>(2026)
 
   // Determine direction for animation based on view order
   const viewOrder: ViewState[] = ["intro", "about", "projects", "certificates", "contact"]
@@ -215,6 +217,27 @@ export default function Home() {
                       <button onClick={() => setShowResume(true)} className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
                         <FileText className="h-6 w-6" />
                       </button>
+                    </motion.div>
+
+                    <motion.div variants={item} className="pt-8 flex flex-col items-center w-full gap-4">
+                      <div className="flex gap-2">
+                        {[2026, 2025].map((year) => (
+                          <button
+                            key={year}
+                            onClick={() => setCalendarYear(year)}
+                            className={`px-3 py-1 text-xs rounded-full transition-all duration-300 ${calendarYear === year ? "bg-emerald-500 text-black" : "bg-white/10 text-zinc-400 hover:bg-white/20"}`}
+                          >
+                            {year}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="p-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-sm w-full flex justify-center hover:border-emerald-500/30 transition-colors duration-500">
+                        <GitHubCalendar
+                          username="Daksh-create349"
+                          colorScheme="dark"
+                          year={calendarYear}
+                        />
+                      </div>
                     </motion.div>
                   </div>
 
