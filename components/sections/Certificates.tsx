@@ -25,9 +25,9 @@ const certificates: Certificate[] = [
     },
     {
         id: "mumbai-hacks",
-        title: "Mumbai Hacks 2024 Participant",
+        title: "Mumbai Hacks 2025 Participant",
         issuer: "Tech Entrepreneurs Association of Mumbai",
-        date: "November 2024",
+        date: "November 2025",
         image: "/certificates/cert_hacks.png",
     },
     {
