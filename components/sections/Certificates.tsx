@@ -17,6 +17,13 @@ interface Certificate {
 
 const certificates: Certificate[] = [
     {
+        id: "genai-hackathon",
+        title: "Top 10 Teams - GenAI Hackathon Mumbai",
+        issuer: "Google for Developers (Team selfNprove)",
+        date: "December 2025",
+        image: "/certificates/cert_genai_hackathon.png",
+    },
+    {
         id: "mumbai-hacks",
         title: "Mumbai Hacks 2024 Participant",
         issuer: "Tech Entrepreneurs Association of Mumbai",
