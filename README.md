@@ -2,7 +2,7 @@
 
 A high-performance, interactive Single Page Application (SPA) portfolio built with Next.js, TypeScript, and WebGL. Designed with a premium "Terminal/Cyberpunk" aesthetic, focusing on smooth animations and immersive user experience.
 
-![Portfolio Screenshot](public/screenshot.png) *<!-- Add a screenshot here later -->*
+![Portfolio Screenshot](https://media.licdn.com/dms/image/v2/D4D2DAQEN3gdA_F93_w/profile-treasury-image-shrink_800_800/B4DZuHeOjNKIAY-/0/1767504409370?e=1768140000&v=beta&t=sDk2rGffz4C5R0z_hnk003b_BkpXmVPnSlocw7XpZD0) *<!-- Add a screenshot here later -->*
 
 ## ✨ Key Features
 
