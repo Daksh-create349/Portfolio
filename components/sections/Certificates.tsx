@@ -17,6 +17,20 @@ interface Certificate {
 
 const certificates: Certificate[] = [
     {
+        id: "hackerrank-js-basic",
+        title: "JavaScript (Basic)",
+        issuer: "HackerRank",
+        date: "February 2026",
+        image: "/certificates/cert_js_basic.png",
+    },
+    {
+        id: "hackerrank-js-intermediate",
+        title: "JavaScript (Intermediate)",
+        issuer: "HackerRank",
+        date: "February 2026",
+        image: "/certificates/cert_js_intermediate.png",
+    },
+    {
         id: "genai-hackathon",
         title: "Top 10 Teams - GenAI Hackathon Mumbai",
         issuer: "Google for Developers (Team selfNprove)",

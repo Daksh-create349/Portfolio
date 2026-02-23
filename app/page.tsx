@@ -104,7 +104,7 @@ export default function Home() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 rounded-full blur-[128px]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl px-6 h-screen flex flex-col pt-20 pb-10">
+      <div className={`relative z-10 w-full max-w-6xl px-6 flex flex-col ${view === "intro" ? "h-screen justify-center pb-0 pt-0" : "min-h-screen pt-20 pb-10"}`}>
 
         {/* Navigation Dots */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 flex gap-4 z-50">
@@ -142,9 +142,9 @@ export default function Home() {
                     ease: [0.2, 0.65, 0.3, 0.9],
                     textShadow: { delay: 3.4, duration: 1.2, ease: "easeInOut" }
                   }}
-                  className="mb-6 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent text-center text-7xl font-extrabold tracking-[-0.05em] uppercase md:text-[clamp(3rem,12vw,9rem)] leading-[0.9]"
+                  className="text-[clamp(3rem,12vw,9rem)] font-extrabold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 px-4 md:px-10 py-2 leading-none"
                 >
-                  PORTFOLIO
+                  Portfolio
                 </motion.h1>
                 <p className="text-zinc-400 px-6 text-center text-sm md:text-lg font-light tracking-wide max-w-xl mx-auto">
                   Unleashing creativity through bold visuals, seamless interfaces, and limitless possibilities.
@@ -231,11 +231,14 @@ export default function Home() {
                           </button>
                         ))}
                       </div>
-                      <div className="p-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-sm w-full flex justify-center hover:border-emerald-500/30 transition-colors duration-500">
+                      <div className="p-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-sm w-full flex justify-center hover:border-emerald-500/30 transition-colors duration-500 overflow-hidden">
                         <GitHubCalendar
                           username="Daksh-create349"
                           colorScheme="dark"
                           year={calendarYear}
+                          blockSize={12}
+                          blockMargin={4}
+                          fontSize={14}
                         />
                       </div>
                     </motion.div>
@@ -261,7 +264,7 @@ export default function Home() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full h-full flex flex-col justify-center"
+              className="w-full h-full"
             >
               <div className="absolute top-0 left-0 w-full p-4 flex justify-between z-20">
                 <button onClick={() => navigateTo("about")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
@@ -283,19 +286,17 @@ export default function Home() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full h-full overflow-y-auto no-scrollbar"
+              className="w-full h-full"
             >
-              <div className="w-full h-full flex flex-col justify-start pt-20 pb-20 px-4 md:px-20">
-                <div className="flex justify-between mb-8">
-                  <button onClick={() => navigateTo("projects")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
-                    <ArrowLeft className="w-4 h-4" /> Projects
-                  </button>
-                  <button onClick={() => navigateTo("contact")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
-                    Contact <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-                <Certificates />
+              <div className="absolute top-0 left-0 w-full p-4 flex justify-between z-20">
+                <button onClick={() => navigateTo("projects")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4" /> Projects
+                </button>
+                <button onClick={() => navigateTo("contact")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
+                  Contact <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
+              <Certificates />
             </motion.div>
           )}
 
@@ -307,7 +308,7 @@ export default function Home() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full h-full flex flex-col justify-center"
+              className="w-full h-full"
             >
               <div className="absolute top-0 left-0 w-full p-4 flex justify-start z-20">
                 <button onClick={() => navigateTo("certificates")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">

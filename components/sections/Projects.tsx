@@ -87,7 +87,7 @@ export function Projects() {
                                 </div>
 
                                 {/* Terminal Content */}
-                                <div className="p-6 md:p-8 font-mono text-sm md:text-base text-green-400 overflow-y-auto max-h-[70vh]">
+                                <div className="p-4 md:p-8 font-mono text-xs md:text-base text-green-400 overflow-y-auto max-h-[80vh]">
                                     <div className="mb-4">
                                         <span className="text-blue-400">root@portfolio</span>:<span className="text-blue-200">~</span>$ ./describe_{selectedProject.title.toLowerCase().replace(" ", "_")}.sh
                                     </div>
@@ -107,9 +107,9 @@ export function Projects() {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-8 md:mb-12"
+                className="mb-8 md:mb-12 mt-12"
             >
-                <h2 className="text-4xl font-bold uppercase tracking-tighter text-white md:text-6xl">Selected Works</h2>
+                <h2 className="text-4xl font-bold uppercase tracking-tighter text-white md:text-6xl py-4">Selected Works</h2>
                 <p className="mt-2 text-zinc-400">Drag to explore • Click for details</p>
             </motion.div>
 

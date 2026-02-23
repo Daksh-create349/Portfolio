@@ -29,7 +29,7 @@ export function Experience() {
             <h3 className="mb-8 text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
                 Experience
             </h3>
-            <div className="relative border-l border-zinc-800 pl-8 ml-3 space-y-12">
+            <div className="relative border-l border-zinc-800 pl-6 md:pl-8 ml-2 md:ml-3 space-y-12">
                 {experience.map((exp, i) => (
                     <motion.div
                         key={i}
@@ -40,15 +40,15 @@ export function Experience() {
                         className="relative"
                     >
                         {/* Glowing Node */}
-                        <span className="absolute -left-[39px] top-1 h-5 w-5 rounded-full border border-zinc-900 bg-zinc-800 ring-4 ring-black" />
+                        <span className="absolute -left-[31px] md:-left-[39px] top-1 h-4 w-4 md:h-5 md:w-5 rounded-full border border-zinc-900 bg-zinc-800 ring-4 ring-black" />
 
                         <div className="flex flex-col gap-1">
                             {exp.period && (
-                                <span className="text-xs font-mono text-emerald-500">{exp.period}</span>
+                                <span className="text-[10px] md:text-xs font-mono text-emerald-500">{exp.period}</span>
                             )}
-                            <h4 className="text-xl font-medium text-white">{exp.role}</h4>
-                            <p className="text-zinc-400">{exp.company}</p>
-                            <p className="mt-2 text-sm text-zinc-500 leading-relaxed max-w-md">
+                            <h4 className="text-lg md:text-xl font-medium text-white">{exp.role}</h4>
+                            <p className="text-sm md:text-base text-zinc-400">{exp.company}</p>
+                            <p className="mt-2 text-xs md:text-sm text-zinc-500 leading-relaxed max-w-md">
                                 {exp.desc}
                             </p>
                         </div>
