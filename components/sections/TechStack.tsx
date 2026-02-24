@@ -36,11 +36,11 @@ export function TechStack() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
     return (
-        <div className="w-full overflow-hidden py-10">
+        <div className="w-full overflow-hidden py-16">
             <h3 className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
                 Tech Stack
             </h3>
-            <div className="relative flex w-full overflow-hidden mask-gradient-x">
+            <div className="relative flex w-full overflow-hidden mask-gradient-x pb-4">
                 <motion.div
                     className="flex w-max gap-16 px-8"
                     animate={{ x: "-50%" }}

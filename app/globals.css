@@ -125,6 +125,7 @@
   }
 }
 
+
 /* Hide Clerk branding & dev mode badge */
 .cl-footer {
   display: none !important;
@@ -136,4 +137,14 @@ div[class*="cl-internal-1tj9h0a"],
 div[class*="cl-internal-11t4hl7"],
 div[class*="cl-internal-6ttx"] {
   display: none !important;
+}
+
+@utility mask-gradient-x {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
 }
