@@ -196,12 +196,38 @@ export default function Home() {
                 <motion.div variants={container} initial="hidden" animate="show" className="space-y-16">
                   <div>
                     <motion.h1 variants={item} className="mb-8 text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">About Me</motion.h1>
-                    <motion.div variants={item} className="h-48 md:h-64 mb-12">
-                      <div className="font-mono text-xl md:text-3xl lg:text-4xl text-emerald-500 leading-relaxed">
-                        <span className="text-zinc-500 mr-4">C:\Users\Daksh&gt;</span>
+                    <motion.div variants={item} className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-12">
+                      {/* Image Frame */}
+                      <div className="relative shrink-0 w-56 h-64 md:w-64 md:h-80 group">
+                        {/* Glowing Background */}
+                        <div className="absolute inset-0 rounded-2xl bg-emerald-500/10 blur-xl transition-all duration-500 group-hover:bg-emerald-500/20 group-hover:blur-2xl" />
+
+                        {/* Image Container */}
+                        <div className="absolute inset-0 rounded-2xl border-2 border-emerald-500/30 overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.1)] transition-all duration-500 group-hover:border-emerald-500/60 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.3)] bg-black/50 z-10 flex items-center justify-center">
+                          <img
+                            src="/images/Portfolio.png"
+                            alt="Daksh Srivastava"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            onError={(e) => {
+                              // Fallback if image isn't named exactly daksh.jpg
+                              (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x600/09090b/10b981?text=Awaiting+Image+Upload'
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                        </div>
+
+                        {/* Cyberpunk Corners */}
+                        <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-emerald-400 z-20 transition-all duration-500 group-hover:-top-3 group-hover:-left-3" />
+                        <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-emerald-400 z-20 transition-all duration-500 group-hover:-top-3 group-hover:-right-3" />
+                        <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-emerald-400 z-20 transition-all duration-500 group-hover:-bottom-3 group-hover:-left-3" />
+                        <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-emerald-400 z-20 transition-all duration-500 group-hover:-bottom-3 group-hover:-right-3" />
+                      </div>
+
+                      {/* Text */}
+                      <div className="flex-1 mt-4 md:mt-0 font-mono text-xl md:text-2xl lg:text-3xl text-emerald-500 leading-relaxed flex flex-col justify-center h-full min-h-[16rem]">
                         <Typewriter
-                          text="I'm Daksh Srivastava, a Full Stack Developer and B.Tech CSE student at ITM Skills University (Batch 2025-2029). I build scalable web apps & premium user experiences."
-                          speed={50}
+                          text="I'm Daksh Srivastava, a Full Stack Developer and B.Tech CSE student (2025-2029). I build scalable web apps & premium user experiences."
+                          speed={40}
                         />
                       </div>
                     </motion.div>
