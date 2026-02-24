@@ -56,7 +56,7 @@ export function Projects() {
     }, [])
 
     return (
-        <div className="flex h-full w-full flex-col justify-center px-4 md:px-10">
+        <div className="flex min-h-full w-full flex-col justify-start md:justify-center py-20 md:py-0 px-4 md:px-10">
             {/* Modal Overlay */}
             {mounted && createPortal(
                 <AnimatePresence>

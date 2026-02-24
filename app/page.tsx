@@ -264,7 +264,7 @@ export default function Home() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full h-full"
+              className="w-full h-full overflow-y-auto no-scrollbar"
             >
               <div className="absolute top-0 left-0 w-full p-4 flex justify-between z-20">
                 <button onClick={() => navigateTo("about")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
@@ -286,7 +286,7 @@ export default function Home() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full h-full"
+              className="w-full h-full overflow-y-auto no-scrollbar"
             >
               <div className="absolute top-0 left-0 w-full p-4 flex justify-between z-20">
                 <button onClick={() => navigateTo("projects")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
@@ -308,7 +308,7 @@ export default function Home() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full h-full"
+              className="w-full h-full overflow-y-auto no-scrollbar"
             >
               <div className="absolute top-0 left-0 w-full p-4 flex justify-start z-20">
                 <button onClick={() => navigateTo("certificates")} className="text-zinc-500 hover:text-white uppercase text-sm tracking-widest flex items-center gap-2">
