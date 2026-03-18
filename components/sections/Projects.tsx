@@ -115,7 +115,7 @@ export function Projects() {
 
             <motion.div
                 ref={containerRef}
-                className="-ml-4 flex cursor-grab active:cursor-grabbing overflow-hidden md:-ml-10"
+                className="-ml-4 flex cursor-grab active:cursor-grabbing overflow-x-clip overflow-y-visible md:-ml-10"
             >
                 <motion.div
                     drag="x"
@@ -130,24 +130,23 @@ export function Projects() {
                             transition={{ duration: 0.3 }}
                             onClick={() => setSelectedProject(project)}
                         >
-                            {/* Video Background for Hypermind */}
+                            {/* Video Background */}
                             {project.video && (
                                 <>
-                                    <div className="absolute inset-0 z-0">
+                                    <div className="absolute inset-0 z-0 overflow-hidden">
                                         <iframe
-                                            width="100%"
-                                            height="100%"
                                             src={project.video}
                                             title={project.title}
                                             frameBorder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             allowFullScreen
-                                            className="h-full w-full object-cover"
-                                            style={{ pointerEvents: 'none' }} // Prevent interaction to allow drag
+                                            className="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2"
+                                            style={{ pointerEvents: 'none' }}
                                         ></iframe>
                                     </div>
-                                    {/* Gradient Overlay for Text Readability */}
-                                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-0" />
+                                    {/* Gradient Overlays for text readability and polished edges */}
+                                    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-0" />
+                                    <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black/40 to-transparent z-0" />
                                 </>
                             )}
 
