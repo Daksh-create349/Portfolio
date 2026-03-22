@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence, Variants } from "framer-motion"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, Github, Linkedin, FileText } from "lucide-react"
@@ -26,11 +26,22 @@ export default function Home() {
   // Determine direction for animation based on view order
   const viewOrder: ViewState[] = ["intro", "about", "projects", "certificates", "contact"]
 
+  // Restore state on mount if user was redirected from sign-in
+  useEffect(() => {
+    const savedView = sessionStorage.getItem("portfolioView") as ViewState | null;
+    if (savedView && viewOrder.includes(savedView)) {
+      setView(savedView);
+    }
+  }, [])
+
   const navigateTo = (newView: ViewState) => {
     const currentIndex = viewOrder.indexOf(view)
     const newIndex = viewOrder.indexOf(newView)
     setDirection(newIndex > currentIndex ? 1 : -1)
     setView(newView)
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("portfolioView", newView)
+    }
   }
 
   const slideVariants: Variants = {
