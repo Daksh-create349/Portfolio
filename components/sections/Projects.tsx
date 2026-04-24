@@ -52,7 +52,7 @@ const projects: Project[] = [
         video: "https://www.youtube.com/embed/-Whoe_-nL3E?autoplay=1&mute=1&loop=1&playlist=-Whoe_-nL3E&controls=0&showinfo=0&rel=0",
         exeName: "aquila.exe",
         description: "AQUILA is a fully re-architected, production-grade geospatial intelligence system designed to detect flood extents for any city globally.\nIt features a decoupled full-stack architecture combining a React and Three.js frontend with a FastAPI and Google Earth Engine backend.\nThe system ingests multi-temporal Sentinel-1 and Sentinel-2 satellite imagery to generate a scientifically credible flood footprint.\nIt applies physics-based corrections to eliminate permanent water bodies and reduce urban false positives.\nThe permanent water baseline utilizes JRC Global Surface Water data to remove sea, lakes, and rivers effectively.\nAn adaptive Otsu thresholding method on the VV histogram is used, dynamically constrained between -22 and -15 dB.\nUrban false positives are further reduced using slope filtering and height above nearest drainage proximity metrics.\nTidal corrections employ JRC seasonality masking to remove shoreline oscillations in coastal regions.\nA sanity check engine applies physics constraints to flag physically implausible flood percentages.\nThe interactive 3D globe features cinematic zoom transitions seamlessly switching to a Leaflet satellite map.\nAnimated real-time metrics panels display flood area, population exposure, urban impact, and confidence scores.\nThe pipeline incorporates a probabilistic confidence model based on distance, terrain, and ensemble stability per pixel.\nUsers can analyze data across multi-layer maps, with toggles for admin boundaries, permanent water, and optical detections.\nThe backend serves vectorized GeoJSON flood layers on demand via RESTful endpoints.\nA styled terminal audit log displays the real pipeline stage progress during the processing workflow.",
-        link: "https://github.com/Daksh-create349/Portfolio"
+        link: "https://github.com/Daksh-create349/SelfNprove-PS6"
     },
     {
         title: "Github Guardian",
@@ -61,7 +61,7 @@ const projects: Project[] = [
         video: "https://www.youtube.com/embed/lY5N3fOYrD4?autoplay=1&mute=1&loop=1&playlist=lY5N3fOYrD4&controls=0&showinfo=0&rel=0",
         exeName: "github_guardian.exe",
         description: "GitHub Guardian: The Ultimate Forensic Security & Repository Management Platform\n\nGitHub Guardian is an advanced security auditing platform designed to solve the 'signal-to-noise' problem in modern DevSecOps. While traditional scanners flood you with low-priority warnings, Guardian focuses on Forensic Impact—hunting active secrets, detecting structural flaws, and verifying the deep history of your repositories.\n\nKey Features:\n\nDeep Forensic Secret Scanning: Traverses the entire Git history (DAG) to find 'OOPS commits'—deleted secrets and credentials buried in historical blobs.\n\nThe Secure GitHub Desktop Wizard: A streamlined browser-native interface for initializing repositories with Auto-Protect Secrets, Smart .gitignore Generation, and Direct-to-GitHub Push.\n\nAI-Powered Architectural Auditing: Leverages state-of-the-art LLMs (OpenAI/Gemini) to perform subjective architectural reviews on 'Critical Path' files, providing contextual security recommendations.\n\nSemantic Code Vulnerability Detection: Goes beyond pattern matching to identify real-world vulnerabilities like SQL Injection, dangerous eval() executions, and insecure XSS patterns.\n\nData Science & Notebook Support: Parses .ipynb Jupyter Notebook cells to ensure data science repositories are as secure as production endpoints.\n\nForensic Scoring Engine: Uses non-linear normalization to prioritize critical security collapses over minor issues.",
-        link: "https://youtu.be/lY5N3fOYrD4"
+        link: "https://github.com/Daksh-create349/Github-Guardian"
     }
 ]
 
@@ -71,7 +71,7 @@ export function Projects() {
     const [mounted, setMounted] = useState(false)
     const { user, isSignedIn } = useUser()
     const { openSignIn } = useClerk()
-    
+
     const [showQueryForm, setShowQueryForm] = useState(false)
     const [queryMessage, setQueryMessage] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -130,11 +130,11 @@ export function Projects() {
                                         speed={15}
                                         className="leading-relaxed whitespace-pre-wrap"
                                     />
-                                    
+
                                     {/* Action Buttons */}
                                     {!showQueryForm ? (
                                         <div className="mt-8 pt-4 border-t border-zinc-800/50 flex justify-end">
-                                            <button 
+                                            <button
                                                 onClick={() => {
                                                     if (!isSignedIn) {
                                                         openSignIn()
@@ -159,7 +159,7 @@ export function Projects() {
                                                 </div>
                                             ) : (
                                                 <div className="flex flex-col gap-3">
-                                                    <textarea 
+                                                    <textarea
                                                         value={queryMessage}
                                                         onChange={(e) => setQueryMessage(e.target.value)}
                                                         rows={3}
@@ -167,13 +167,13 @@ export function Projects() {
                                                         className="w-full bg-black/50 border border-emerald-500/30 rounded p-3 text-emerald-400 font-mono text-sm focus:border-emerald-500 focus:outline-none resize-none"
                                                     />
                                                     <div className="flex justify-end gap-2">
-                                                        <button 
+                                                        <button
                                                             onClick={() => setShowQueryForm(false)}
                                                             className="px-4 py-2 text-zinc-500 border border-zinc-700/50 rounded font-mono text-xs hover:bg-zinc-800 transition-colors cursor-pointer"
                                                         >
                                                             CANCEL
                                                         </button>
-                                                        <button 
+                                                        <button
                                                             onClick={async () => {
                                                                 if (!queryMessage.trim()) return;
                                                                 setIsSubmitting(true);
