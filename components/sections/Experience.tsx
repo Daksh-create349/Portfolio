@@ -4,22 +4,22 @@ import { motion } from "framer-motion"
 
 const experience = [
     {
-        role: "Top 10 Finalist",
-        company: "GenAI Hackathon",
-        period: "",
-        desc: "Achieved Top 10 Finalist status in a major competition. Developed innovative AI-driven solutions under tight deadlines."
-    },
-    {
-        role: "Hackathon Participant",
-        company: "Various Events",
-        period: "",
-        desc: "Actively participated in over 6+ hackathons, building diverse projects ranging from web apps to AI tools."
+        role: "Google Student Ambassador",
+        company: "Google",
+        period: "2026 - Present",
+        desc: "Lead Google Cloud, Workspace, and AI/ML developer workshops on campus; act as liaison between Google and the university ecosystem, promoting GDSC and Google Career Certificate programs."
     },
     {
         role: "Student Ambassador",
         company: "LetsUpgrade",
         period: "Sep 2025 - Dec 2025",
-        desc: "Facilitated technical workshops and community learning events. Bridged the gap between students and industry-standard tech education."
+        desc: "Organized technical workshops, webinars, and coding events for university students; drove community engagement through cross-functional event coordination and leadership initiatives."
+    },
+    {
+        role: "Hackathon Finalist",
+        company: "Various National Events",
+        period: "2024 - 2025",
+        desc: "Achieved finalist standing in competitive national hackathon demonstrating innovation in full-stack and AI development."
     }
 ]
 

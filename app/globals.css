@@ -120,8 +120,17 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
+  html, body {
     @apply bg-background text-foreground;
+    cursor: default !important;
+  }
+
+  a, button, select, [role="button"], .cursor-pointer {
+    cursor: pointer !important;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"], textarea {
+    cursor: text !important;
   }
 }
 

@@ -85,7 +85,7 @@ A high-performance, interactive Single Page Application (SPA) portfolio built wi
 ## 🤝 Contact
 
 **Daksh Srivastava**  
-- **LinkedIn**: [Daksh Srivastava](https://www.linkedin.com/in/daksh-srivastava-2ba851344/)
+- **LinkedIn**: [Daksh Srivastava](https://www.linkedin.com/in/daksh-srivastava)
 - **GitHub**: [Daksh-create349](https://github.com/Daksh-create349)
 
 ---

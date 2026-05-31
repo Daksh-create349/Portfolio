@@ -216,7 +216,7 @@ export default function Home() {
                         {/* Image Container */}
                         <div className="absolute inset-0 rounded-2xl border-2 border-emerald-500/30 overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.1)] transition-all duration-500 group-hover:border-emerald-500/60 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.3)] bg-black/50 z-10 flex items-center justify-center">
                           <img
-                            src="/images/Portfolio.png"
+                            src="/images/Portfolio.jpg"
                             alt="Daksh Srivastava"
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             onError={(e) => {
@@ -245,7 +245,7 @@ export default function Home() {
 
 
                     <motion.div variants={item} className="flex gap-4 pt-8">
-                      <a href="https://www.linkedin.com/in/daksh-srivastava-2ba851344/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
+                      <a href="https://linkedin.com/in/daksh-srivastava" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
                         <Linkedin className="h-6 w-6" />
                       </a>
                       <a href="https://github.com/Daksh-create349" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white hover:scale-110 duration-300">
@@ -277,6 +277,67 @@ export default function Home() {
                           blockMargin={4}
                           fontSize={14}
                         />
+                      </div>
+
+                      {/* GitHub Achievements Badges */}
+                      <div className="mt-6 w-full">
+                        <h4 className="text-[10px] font-mono tracking-[0.2em] text-zinc-500 uppercase mb-3 text-center md:text-left">GitHub Achievements</h4>
+                        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                          {[
+                            {
+                              name: "Pull Shark",
+                              tier: "Bronze (x2)",
+                              desc: "Merged pull requests into repositories",
+                              img: "/images/achievements/pull-shark.png"
+                            },
+                            {
+                              name: "Pair Extraordinaire",
+                              tier: "Default",
+                              desc: "Co-authored commits in merged PRs",
+                              img: "/images/achievements/pair-extraordinaire.png"
+                            },
+                            {
+                              name: "Galaxy Brain",
+                              tier: "Default",
+                              desc: "Answered questions in discussions",
+                              img: "/images/achievements/galaxy-brain.png"
+                            },
+                            {
+                              name: "Quickdraw",
+                              tier: "Default",
+                              desc: "Closed issue or PR within 5 minutes",
+                              img: "/images/achievements/quickdraw.png"
+                            },
+                            {
+                              name: "YOLO",
+                              tier: "Default",
+                              desc: "Merged PR without code review",
+                              img: "/images/achievements/yolo.png"
+                            }
+                          ].map((badge, idx) => (
+                            <div 
+                              key={idx} 
+                              className="group relative flex flex-col items-center p-3 rounded-xl border border-white/5 bg-black/30 hover:bg-black/50 hover:border-emerald-500/30 transition-all duration-300 overflow-hidden cursor-help"
+                            >
+                              <div className="relative w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                                <img 
+                                  src={badge.img} 
+                                  alt={badge.name} 
+                                  className="w-full h-full object-contain"
+                                />
+                              </div>
+                              <span className="text-[10px] md:text-xs font-bold text-white text-center mt-2 truncate w-full">{badge.name}</span>
+                              <span className="text-[8px] font-mono text-emerald-500 mt-0.5">{badge.tier}</span>
+
+                              {/* Tooltip Overlay */}
+                              <div className="absolute inset-0 bg-zinc-950/95 flex flex-col items-center justify-center p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none text-center">
+                                <span className="text-[10px] font-bold text-emerald-400">{badge.name}</span>
+                                <span className="text-[8px] font-mono text-zinc-500 my-0.5">{badge.tier}</span>
+                                <span className="text-[9px] text-zinc-300 leading-tight">{badge.desc}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </motion.div>
                   </div>
