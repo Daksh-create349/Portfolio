@@ -62,6 +62,15 @@ const projects: Project[] = [
         exeName: "github_guardian.exe",
         description: "GitHub Guardian: The Ultimate Forensic Security & Repository Management Platform\n\nGitHub Guardian is an advanced security auditing platform designed to solve the 'signal-to-noise' problem in modern DevSecOps. While traditional scanners flood you with low-priority warnings, Guardian focuses on Forensic Impact—hunting active secrets, detecting structural flaws, and verifying the deep history of your repositories.\n\nKey Features:\n\nDeep Forensic Secret Scanning: Traverses the entire Git history (DAG) to find 'OOPS commits'—deleted secrets and credentials buried in historical blobs.\n\nThe Secure GitHub Desktop Wizard: A streamlined browser-native interface for initializing repositories with Auto-Protect Secrets, Smart .gitignore Generation, and Direct-to-GitHub Push.\n\nAI-Powered Architectural Auditing: Leverages state-of-the-art LLMs (OpenAI/Gemini) to perform subjective architectural reviews on 'Critical Path' files, providing contextual security recommendations.\n\nSemantic Code Vulnerability Detection: Goes beyond pattern matching to identify real-world vulnerabilities like SQL Injection, dangerous eval() executions, and insecure XSS patterns.\n\nData Science & Notebook Support: Parses .ipynb Jupyter Notebook cells to ensure data science repositories are as secure as production endpoints.\n\nForensic Scoring Engine: Uses non-linear normalization to prioritize critical security collapses over minor issues.",
         link: "https://github.com/Daksh-create349/Github-Guardian"
+    },
+    {
+        title: "Diet Coke",
+        category: "Creative Web Development",
+        image: "bg-linear-to-br from-neutral-950 to-red-950",
+        video: "https://www.youtube.com/embed/h5eP08YxJZc?autoplay=1&mute=1&loop=1&playlist=h5eP08YxJZc&controls=0&showinfo=0&rel=0",
+        exeName: "diet_coke.exe",
+        description: "DIET COKE — SIGNATURE EXPERIENCE\n\nA fully scroll-driven, canvas-powered, frame-by-frame animated web experience built around one of the most iconic beverages on the planet.\nThis is a premium digital showcase that treats a simple soda can like a high-end luxury product.\n\nKey Features:\n\nScroll-Driven Animation: Frame-by-frame canvas-powered rendering that brings the product to life dynamically as the user scrolls.\n\nObsidian & Crimson Aesthetic: A curated, high-contrast visual design system leveraging Obsidian black (#000000), Intense Red (#E41E2A), metallic Silver (#C6C6C6), and rare Caffeine-Free Gold (#D4AF37).\n\nInteractive Can Variants: Features three distinct product variants (Classic, Cherry, and Caffeine Free) with unique hover effects, rotation states, and immersive environment color bleeds.\n\nDecade Evolution Archive: A chronological showcase spanning five decades of Diet Coke design lineage from the 1992 Silver Wave to modern Minimalist Stripe, built using a layered card deck with custom proximity detection, depth-of-field blur, and smooth transitions.",
+        link: "https://github.com/Daksh-create349/Diet-Coke"
     }
 ]
 
@@ -284,6 +293,63 @@ export function Projects() {
                             </div>
                         </div>
                     ))}
+
+                    {/* Retro/Cyberpunk Terminal Card for More Works */}
+                    <a
+                        href="https://github.com/Daksh-create349?tab=repositories"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="snap-center relative h-[340px] w-[280px] shrink-0 overflow-hidden rounded-[2rem] border border-dashed border-zinc-800 bg-black/60 p-6 shadow-2xl md:h-[460px] md:w-[360px] cursor-pointer transition-all duration-300 hover:scale-105 hover:border-emerald-500/50 hover:bg-zinc-950/40 group flex flex-col justify-between"
+                    >
+                        {/* Grid background effect */}
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0" />
+                        
+                        {/* Green gradient glow in center */}
+                        <div className="absolute inset-0 bg-radial-gradient from-emerald-500/5 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+                        
+                        <div className="relative z-10 flex h-full flex-col justify-between w-full">
+                            <div className="flex justify-between items-start w-full">
+                                <span className="text-zinc-600 font-mono text-xs group-hover:text-emerald-500/70 transition-colors">
+                                    [SYS_ARCHIVE]
+                                </span>
+                                <div className="rounded-full bg-zinc-900 border border-zinc-800 p-2.5 text-zinc-400 group-hover:text-emerald-400 group-hover:border-emerald-500/30 group-hover:bg-emerald-950/20 transition-all duration-300">
+                                    <ArrowUpRight className="h-5 w-5" />
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-4 items-center justify-center my-auto">
+                                {/* Pulsing GitHub Icon */}
+                                <div className="relative">
+                                    <div className="absolute -inset-4 rounded-full bg-emerald-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        className="w-16 h-16 text-zinc-700 group-hover:text-emerald-400 transition-colors duration-300"
+                                        fill="currentColor"
+                                    >
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.48 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                                    </svg>
+                                </div>
+                                <div className="text-center">
+                                    <p className="text-zinc-500 font-mono text-[10px] tracking-widest uppercase">
+                                        github.com/Daksh-create349
+                                    </p>
+                                    <div className="flex items-center justify-center gap-1.5 mt-1 font-mono text-[10px] text-emerald-500/80">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                        <span>STATUS: ACTIVE_REPOS</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span className="mb-1 block text-xs font-mono tracking-widest text-zinc-500 group-hover:text-emerald-500/70 transition-colors">
+                                    ./EXPLORE_ALL.sh
+                                </span>
+                                <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                                    More Projects
+                                </h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

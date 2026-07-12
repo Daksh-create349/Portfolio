@@ -117,6 +117,19 @@ export function ClassicResume() {
                             <li>Engineered Generative UI rendering dynamic Recharts charts and ReactFlow flowcharts/mind maps from AI output; integrated Gemini Live for real-time voice/video sessions; deployed at <a href="https://hypermind-official.vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">hypermind-official.vercel.app</a></li>
                         </ul>
                     </div>
+
+                    <div className="mb-4">
+                        <div className="flex justify-between items-baseline mb-1">
+                            <div className="text-sm md:text-base">
+                                <strong className="font-bold">Diet Coke — Interactive 3D Web Experience</strong> <span className="font-serif italic text-xs text-gray-700">/ React 19, TypeScript, Framer Motion, Canvas API, Tailwind CSS, Vite</span>
+                            </div>
+                            <div className="font-mono text-xs text-gray-700 shrink-0 ml-2">2026</div>
+                        </div>
+                        <ul className="list-disc ml-5 text-sm space-y-1 text-gray-700 leading-relaxed">
+                            <li>Developed a premium scroll-driven interactive web showcase featuring canvas-powered, frame-by-frame can animations and 3D interactions; designed high-contrast Obsidian and Crimson color palette with custom typography</li>
+                            <li>Implemented interactive variant pages (Classic, Cherry, Caffeine Free) with dynamic environmental glow effects and a layered chronological design archive leveraging advanced proximity detection and depth-of-field blurring</li>
+                        </ul>
+                    </div>
                 </section>
 
                 {/* Experience */}
